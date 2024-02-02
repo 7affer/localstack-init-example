@@ -7,6 +7,16 @@ services:
     environment:
       - DEBUG=1
       - SERVICES=s3,sns,sqs
+      - AWS_DEFAULT_REGION=us-east-1
     volumes:
       - ./init/init.sh:/etc/localstack/init/ready.d/init-aws.sh
       - ./local-fixtures:/fixtures
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - awslocal sns get-topic-attributes --topic-arn arn:aws:sns:us-east-1:000000000000:my-topic
+      interval: 5s
+      timeout: 10s
+      start_period: 10s

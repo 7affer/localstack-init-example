@@ -8,4 +8,4 @@ awslocal s3 cp /fixtures/example-file.html s3://example-bucket/some-key/example-
 awslocal sqs create-queue --queue-name my-queue
 
 #init sns
-awslocal sns create-topic --name my-topic
+awslocal sns create-topic  --name my-topic
